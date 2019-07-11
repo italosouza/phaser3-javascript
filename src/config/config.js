@@ -1,14 +1,16 @@
 export const config = {
   scenes: {
-    load: "load",
-    menu: "menu",
-    play: "play"
+    load: 'load',
+    menu: 'menu',
+    play: 'play'
   },
   audios: {
-    bgm: "soundtrack_1.mp3"
+    bgm: 'soundtrack_1.mp3'
   },
-  sprites: {},
+  sprites: {
+    eyeball: 'eyeball.png'
+  },
   images: {
-    logo: "logo.png"
+    logo: 'logo.png'
   }
-};
+}

@@ -1,8 +1,10 @@
-import { config } from "../config/config";
+import { config } from '../config/config'
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
-    super({ key: config.scenes.menu });
+    super({ key: config.scenes.menu })
   }
-  create() {}
+  create() {
+    this.scene.start(config.scenes.play, this)
+  }
 }

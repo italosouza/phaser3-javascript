@@ -20,7 +20,7 @@ export class LoadScene extends Phaser.Scene {
     }
   }
 
-  loadSprites(frame) {
+  loadSprites() {
     this.load.setPath('assets/sprites')
     for (let sprite in config.sprites) {
       const spriteData = config.sprites[sprite]

@@ -1,0 +1,566 @@
+{
+	"textures": [
+		{
+			"image": "items.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 730,
+				"h": 255
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "armor.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 117,
+						"h": 109
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 117,
+						"h": 109
+					}
+				},
+				{
+					"filename": "axe.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 2,
+						"w": 102,
+						"h": 124
+					},
+					"frame": {
+						"x": 0,
+						"y": 109,
+						"w": 102,
+						"h": 124
+					}
+				},
+				{
+					"filename": "wand.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 7,
+						"w": 108,
+						"h": 116
+					},
+					"frame": {
+						"x": 117,
+						"y": 0,
+						"w": 108,
+						"h": 116
+					}
+				},
+				{
+					"filename": "hammer.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 4,
+						"w": 101,
+						"h": 109
+					},
+					"frame": {
+						"x": 225,
+						"y": 0,
+						"w": 101,
+						"h": 109
+					}
+				},
+				{
+					"filename": "axeDouble.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 10,
+						"w": 105,
+						"h": 101
+					},
+					"frame": {
+						"x": 326,
+						"y": 0,
+						"w": 105,
+						"h": 101
+					}
+				},
+				{
+					"filename": "bow.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 22,
+						"y": 14,
+						"w": 81,
+						"h": 100
+					},
+					"frame": {
+						"x": 431,
+						"y": 0,
+						"w": 81,
+						"h": 100
+					}
+				},
+				{
+					"filename": "sword.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 23,
+						"y": 19,
+						"w": 86,
+						"h": 92
+					},
+					"frame": {
+						"x": 512,
+						"y": 0,
+						"w": 86,
+						"h": 92
+					}
+				},
+				{
+					"filename": "tools.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 20,
+						"y": 22,
+						"w": 88,
+						"h": 83
+					},
+					"frame": {
+						"x": 598,
+						"y": 0,
+						"w": 88,
+						"h": 83
+					}
+				},
+				{
+					"filename": "tome.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 23,
+						"y": 20,
+						"w": 78,
+						"h": 93
+					},
+					"frame": {
+						"x": 102,
+						"y": 116,
+						"w": 78,
+						"h": 93
+					}
+				},
+				{
+					"filename": "shield.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 22,
+						"y": 18,
+						"w": 79,
+						"h": 91
+					},
+					"frame": {
+						"x": 180,
+						"y": 116,
+						"w": 79,
+						"h": 91
+					}
+				},
+				{
+					"filename": "map.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 21,
+						"w": 71,
+						"h": 88
+					},
+					"frame": {
+						"x": 259,
+						"y": 109,
+						"w": 71,
+						"h": 88
+					}
+				},
+				{
+					"filename": "envelope.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 25,
+						"y": 27,
+						"w": 79,
+						"h": 78
+					},
+					"frame": {
+						"x": 330,
+						"y": 101,
+						"w": 79,
+						"h": 78
+					}
+				},
+				{
+					"filename": "swordWood.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 26,
+						"w": 75,
+						"h": 76
+					},
+					"frame": {
+						"x": 330,
+						"y": 179,
+						"w": 75,
+						"h": 76
+					}
+				},
+				{
+					"filename": "shieldSmall.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 27,
+						"w": 72,
+						"h": 76
+					},
+					"frame": {
+						"x": 405,
+						"y": 179,
+						"w": 72,
+						"h": 76
+					}
+				},
+				{
+					"filename": "helmet.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 26,
+						"w": 59,
+						"h": 75
+					},
+					"frame": {
+						"x": 409,
+						"y": 101,
+						"w": 59,
+						"h": 75
+					}
+				},
+				{
+					"filename": "potionBlue.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 28,
+						"w": 61,
+						"h": 71
+					},
+					"frame": {
+						"x": 468,
+						"y": 100,
+						"w": 61,
+						"h": 71
+					}
+				},
+				{
+					"filename": "backpack.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 27,
+						"y": 22,
+						"w": 74,
+						"h": 82
+					},
+					"frame": {
+						"x": 529,
+						"y": 92,
+						"w": 74,
+						"h": 82
+					}
+				},
+				{
+					"filename": "dagger.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 20,
+						"w": 51,
+						"h": 82
+					},
+					"frame": {
+						"x": 477,
+						"y": 171,
+						"w": 51,
+						"h": 82
+					}
+				},
+				{
+					"filename": "potionGreen.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 28,
+						"w": 61,
+						"h": 71
+					},
+					"frame": {
+						"x": 528,
+						"y": 174,
+						"w": 61,
+						"h": 71
+					}
+				},
+				{
+					"filename": "potionRed.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 36,
+						"y": 28,
+						"w": 61,
+						"h": 71
+					},
+					"frame": {
+						"x": 603,
+						"y": 83,
+						"w": 61,
+						"h": 71
+					}
+				},
+				{
+					"filename": "heart.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 31,
+						"y": 35,
+						"w": 66,
+						"h": 62
+					},
+					"frame": {
+						"x": 664,
+						"y": 83,
+						"w": 66,
+						"h": 62
+					}
+				},
+				{
+					"filename": "coin.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 44,
+						"y": 39,
+						"w": 67,
+						"h": 61
+					},
+					"frame": {
+						"x": 603,
+						"y": 154,
+						"w": 67,
+						"h": 61
+					}
+				},
+				{
+					"filename": "scroll.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 32,
+						"w": 60,
+						"h": 60
+					},
+					"frame": {
+						"x": 670,
+						"y": 145,
+						"w": 60,
+						"h": 60
+					}
+				},
+				{
+					"filename": "gemBlue.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 42,
+						"w": 49,
+						"h": 45
+					},
+					"frame": {
+						"x": 102,
+						"y": 209,
+						"w": 49,
+						"h": 45
+					}
+				},
+				{
+					"filename": "gemGreen.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 42,
+						"w": 49,
+						"h": 45
+					},
+					"frame": {
+						"x": 151,
+						"y": 209,
+						"w": 49,
+						"h": 45
+					}
+				},
+				{
+					"filename": "gemRed.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 42,
+						"w": 49,
+						"h": 45
+					},
+					"frame": {
+						"x": 200,
+						"y": 207,
+						"w": 49,
+						"h": 45
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:22a51bf67248d0d26328bef8791545e2:df86782a67887fe76543b28c02d9e82d:110e074689c9edd2c54833ce2e4d9270$"
+	}
+}

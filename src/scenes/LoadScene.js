@@ -13,7 +13,7 @@ export class LoadScene extends Phaser.Scene {
     }
   }
 
-  loadAudios() {
+  loadAudio() {
     this.load.setPath('assets/audios')
     for (let audio in config.audios) {
       this.load.audio(config.audios[audio], config.audios[audio])
@@ -23,14 +23,23 @@ export class LoadScene extends Phaser.Scene {
   loadSprites(frame) {
     this.load.setPath('assets/sprites')
     for (let sprite in config.sprites) {
-      this.load.spritesheet(config.sprites[sprite], config.sprites[sprite], frame)
+      const spriteData = config.sprites[sprite]
+      const spriteImport = {
+        key: sprite,
+        url: spriteData.url,
+        frameConfig: {
+          frameWidth: !!spriteData.frameConfig ? spriteData.frameConfig.frameWidth : 32,
+          frameHeight: !!spriteData.frameConfig ? spriteData.frameConfig.frameHeight : 32
+        }
+      }
+      this.load.spritesheet(spriteImport)
     }
   }
 
   preload() {
     this.loadImages()
-    this.loadAudios()
-    this.loadSprites({ frameWidth: 32, frameHeight: 38 })
+    this.loadAudio()
+    this.loadSprites()
 
     let width = this.cameras.main.width
     let height = this.cameras.main.height

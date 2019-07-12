@@ -8,9 +8,11 @@ export const config = {
     bgm: 'soundtrack_1.mp3'
   },
   sprites: {
-    eyeball: 'eyeball.png'
+    fire1: { key: 'fire1', url: 'fire1_64.png', frameConfig: { frameWidth: 64, frameHeight: 64 } }
   },
   images: {
-    logo: 'logo.png'
+    logo: 'logo.png',
+    bg: 'bg_03.jpg',
+    playButton: 'play.png'
   }
 }

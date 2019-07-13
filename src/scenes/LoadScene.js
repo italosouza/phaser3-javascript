@@ -36,10 +36,18 @@ export class LoadScene extends Phaser.Scene {
     }
   }
 
+  loadAtlas() {
+    this.load.setPath('assets/sprites')
+    config.atlas.map(atlas => {
+      this.load.multiatlas(atlas)
+    })
+  }
+
   preload() {
     this.loadImages()
     this.loadAudio()
     this.loadSprites()
+    this.loadAtlas()
 
     let width = this.cameras.main.width
     let height = this.cameras.main.height
@@ -100,7 +108,7 @@ export class LoadScene extends Phaser.Scene {
       loadingText.destroy()
       percentText.destroy()
       assetText.destroy()
-      this.scene.start(config.scenes.menu, this)
+      this.scene.start(config.scenes.play)
     })
   }
 

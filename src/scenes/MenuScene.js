@@ -5,16 +5,6 @@ export class MenuScene extends Phaser.Scene {
     super({ key: config.scenes.menu })
   }
 
-  preload() {
-    this.load.setPath('assets/sprites')
-    this.load.multiatlas({
-      key: 'items',
-      atlasURL: 'items.json'
-      // baseURL: 'sprite',
-      // path: 'path'
-    })
-  }
-
   create() {
     const { width } = this.game.renderer
     const { height } = this.game.renderer
@@ -38,7 +28,8 @@ export class MenuScene extends Phaser.Scene {
       frameRate: 20,
       repeat: -1,
       frames: this.anims.generateFrameNumbers(config.sprites.fire1.key, {
-        frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        start: 0,
+        end: 60
       })
     })
 
@@ -48,8 +39,8 @@ export class MenuScene extends Phaser.Scene {
     playButton.on('pointerover', () => {
       hoverSprite.setVisible(true)
       hoverSprite.play('fire1')
-      hoverSprite.x = playButton.x - playButton.width
-      hoverSprite.y = playButton.y
+      hoverSprite.x = playButton.x - 100
+      hoverSprite.y = playButton.y - 10
     })
 
     playButton.on('pointerout', () => {
@@ -59,19 +50,5 @@ export class MenuScene extends Phaser.Scene {
     playButton.on('pointerup', () => {
       this.scene.start(config.scenes.play)
     })
-
-    this.add.sprite(200, 200, 'items', 'armor.png')
-    this.add.sprite(200, 300, 'items', 'axe.png')
-
-    // const frameNames = this.anims.generateFrameNames('items', {
-    //   start: 1,
-    //   end: 8,
-    //   zeroPad: 4,
-    //   prefix: '',
-    //   suffix: '.png'
-    // })
-
-    // this.anims.create({ key: 'walk', frames: frameNames, frameRate: 10, repeat: -1 })
-    // obj.anims.play('walk')
   }
 }

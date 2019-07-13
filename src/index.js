@@ -25,7 +25,9 @@ const config = {
   scale: {
     mode: Phaser.Scale.PORTRAIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
-  }
+  },
+  title: 'Memory Puzzle',
+  url: 'http://localhost:3000'
 }
 
 const game = new Phaser.Game(config)

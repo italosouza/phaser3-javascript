@@ -23,9 +23,53 @@ export class PlayScene extends Phaser.Scene {
       card.setDataEnabled()
       card.data.set('name', frame.frame)
       card.data.set('selected', 0)
+      card.data.set('flipped', 0)
 
       this.cards.push(card)
     })
+  }
+
+  frontFlip(card) {
+    this.tweens.add({
+      targets: card,
+      scaleX: -1,
+      scaleY: 1,
+      ease: 'Linear',
+      duration: 150,
+      repeat: 0,
+      yoyo: false,
+      onComplete: () => {
+        card.data.set('flipped', 1)
+        card.setTexture('items', 'armor.png')
+      }
+    })
+  }
+
+  backFlip(card) {
+    this.tweens.add({
+      targets: card,
+      scaleX: 1,
+      scaleY: 1,
+      ease: 'Linear',
+      duration: 150,
+      repeat: 0,
+      yoyo: false,
+      onComplete: () => {
+        const name = card.data.get('name')
+        card.data.set('flipped', 0)
+        card.setTexture('items', name)
+      }
+    })
+  }
+
+  flipCard(card) {
+    const flipped = card.data.get('flipped')
+
+    if (flipped) {
+      this.backFlip(card)
+      return
+    }
+    this.frontFlip(card)
   }
 
   attachCardEvents() {
@@ -35,11 +79,12 @@ export class PlayScene extends Phaser.Scene {
       card.on('pointerup', () => {
         const selected = card.data.get('selected')
         card.data.set('selected', !selected)
+        this.flipCard(card)
       })
 
       card.on('changedata', (gameObject, key, value) => {
-        console.log(key, value)
-        // this.ui.score.setText([`Pontos: ${card.data.get('name')}`])
+        // console.log(key, value)
+        this.ui.score.setText([`Pontos: ${card.data.get('name')}`])
       })
     })
   }
@@ -73,7 +118,23 @@ export class PlayScene extends Phaser.Scene {
     //   repeat: -1
     // })
     // this.add.sprite(600, 500, config.sprites.fire1.key).play('eyeAnim')
-    // this.add.sprite(200, 200, 'items', 'armor.png')
+    // this.armor = this.add.sprite(200, 200, 'items', 'armor.png')
+    // this.armor.setInteractive()
+    // this.armor.on('pointerup', () => {
+    //   this.tweens.add({
+    //     targets: this.armor,
+    //     scaleX: -1,
+    //     scaleY: 1,
+    //     ease: 'Linear',
+    //     duration: 150,
+    //     repeat: 0,
+    //     yoyo: false,
+    //     onComplete: () => {
+    //       console.log(this.armor.frame.name.texture)
+    //       this.armor.setTexture('items', 'bow.png')
+    //     }
+    //   })
+    // })
     // this.add.sprite(200, 300, 'items', 'axe.png')
   }
 }

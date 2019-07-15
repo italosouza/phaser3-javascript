@@ -1,5 +1,4 @@
 import { config } from '../config/config'
-import { isArray } from 'util'
 
 export class PlayScene extends Phaser.Scene {
   constructor() {
@@ -46,8 +45,8 @@ export class PlayScene extends Phaser.Scene {
       card.data.set('name', frame.frame)
       card.data.set('selected', 0)
       card.data.set('key', frameKey)
-      // card.data.set('flipped', 1)
-      // card.setTexture('items', 'map.png')
+      card.data.set('flipped', 1)
+      card.setTexture('items', 'map.png')
       this.cardGroup.add(card)
 
       this.cards.push(card)
@@ -60,11 +59,14 @@ export class PlayScene extends Phaser.Scene {
       return
     }
 
-    const curCardKey = this.currentCard.data.get('key')
-    const selCardKey = card.data.get('key')
+    if (this.currentCard.data.get('key') === card.data.get('key')) {
+      return
+    }
 
-    if (curCardKey === selCardKey) {
-      console.log('iguais')
+    const curCardName = this.currentCard.data.get('name')
+    const selCardName = card.data.get('name')
+
+    if (curCardName === selCardName) {
       this.currentCard.setVisible(false)
       card.setVisible(false)
       this.currentCard = null

@@ -108,7 +108,7 @@ export class LoadScene extends Phaser.Scene {
       loadingText.destroy()
       percentText.destroy()
       assetText.destroy()
-      this.scene.start(config.scenes.play)
+      this.scene.start(config.scenes.menu)
     })
   }
 

@@ -4,6 +4,7 @@ export class PlayScene extends Phaser.Scene {
   constructor() {
     super({ key: config.scenes.play })
     this.ui = {}
+    this.cards = []
   }
 
   drawUI() {
@@ -12,46 +13,61 @@ export class PlayScene extends Phaser.Scene {
 
   generateCardDeck() {
     const frameNames = this.anims.generateFrameNames('items', {
-      frames: ['armor', 'axe', 'wand', 'bow'],
+      frames: ['armor', 'axe', 'axeDouble', 'backpack', 'bow', 'coin'],
       suffix: '.png'
     })
+    this.cardGroup = this.add.group({})
 
-    this.cards = []
     frameNames.map((frame, i) => {
-      const card = this.add.sprite(i * 100, 100, frame.key, frame.frame)
+      const card = this.add.sprite(0, 0, frame.key, frame.frame)
 
       card.setDataEnabled()
       card.data.set('name', frame.frame)
       card.data.set('selected', 0)
-      card.data.set('flipped', 0)
+      card.data.set('flipped', 1)
+      card.setTexture('items', 'map.png')
+      this.cardGroup.add(card)
 
       this.cards.push(card)
     })
   }
 
-  frontFlip(card) {
-    this.tweens.add({
+  flip(card) {
+    const timeline = this.tweens.createTimeline()
+    timeline.add({
       targets: card,
-      scaleX: -1,
+      scaleX: 0,
       scaleY: 1,
       ease: 'Linear',
-      duration: 150,
+      duration: 100,
       repeat: 0,
       yoyo: false,
       onComplete: () => {
         card.data.set('flipped', 1)
-        card.setTexture('items', 'armor.png')
+        card.setTexture('items', 'map.png')
       }
     })
-  }
 
-  backFlip(card) {
-    this.tweens.add({
+    timeline.add({
       targets: card,
-      scaleX: 1,
+      scaleX: -1,
       scaleY: 1,
       ease: 'Linear',
-      duration: 150,
+      duration: 100,
+      repeat: 0,
+      yoyo: false
+    })
+    timeline.play()
+  }
+
+  unflip(card) {
+    const timeline = this.tweens.createTimeline()
+    timeline.add({
+      targets: card,
+      scaleX: 0,
+      scaleY: 1,
+      ease: 'Linear',
+      duration: 100,
       repeat: 0,
       yoyo: false,
       onComplete: () => {
@@ -60,16 +76,27 @@ export class PlayScene extends Phaser.Scene {
         card.setTexture('items', name)
       }
     })
+
+    timeline.add({
+      targets: card,
+      scaleX: 1,
+      scaleY: 1,
+      ease: 'Linear',
+      duration: 100,
+      repeat: 0,
+      yoyo: false
+    })
+
+    timeline.play()
   }
 
   flipCard(card) {
     const flipped = card.data.get('flipped')
-
     if (flipped) {
-      this.backFlip(card)
+      this.unflip(card)
       return
     }
-    this.frontFlip(card)
+    this.flip(card)
   }
 
   attachCardEvents() {
@@ -83,9 +110,19 @@ export class PlayScene extends Phaser.Scene {
       })
 
       card.on('changedata', (gameObject, key, value) => {
-        // console.log(key, value)
         this.ui.score.setText([`Pontos: ${card.data.get('name')}`])
       })
+    })
+  }
+
+  drawCards() {
+    Phaser.Actions.GridAlign(this.cardGroup.getChildren(), {
+      width: 4,
+      height: 10,
+      cellWidth: 90,
+      cellHeight: 100,
+      x: 250,
+      y: 150
     })
   }
 
@@ -93,48 +130,6 @@ export class PlayScene extends Phaser.Scene {
     this.drawUI()
     this.generateCardDeck()
     this.attachCardEvents()
-
-    // var group = this.add.group({
-    //   key: 'items',
-    //   frames: ['armor.png', 'axe.png'],
-    //   frameQuantity: 5
-    // })
-    // Phaser.Actions.GridAlign(group.getChildren(), {
-    //   width: 4,
-    //   height: 10,
-    //   cellWidth: 72,
-    //   cellHeight: 82,
-    //   x: 250,
-    //   y: 80
-    // })
-    // this.add.sprite(600, 300, config.sprites.fire1.key, 0)
-    // this.anims.create({
-    //   key: 'eyeAnim',
-    //   frames: this.anims.generateFrameNumbers(config.sprites.fire1.key, {
-    //     start: 0,
-    //     end: 60
-    //   }),
-    //   frameRate: 20,
-    //   repeat: -1
-    // })
-    // this.add.sprite(600, 500, config.sprites.fire1.key).play('eyeAnim')
-    // this.armor = this.add.sprite(200, 200, 'items', 'armor.png')
-    // this.armor.setInteractive()
-    // this.armor.on('pointerup', () => {
-    //   this.tweens.add({
-    //     targets: this.armor,
-    //     scaleX: -1,
-    //     scaleY: 1,
-    //     ease: 'Linear',
-    //     duration: 150,
-    //     repeat: 0,
-    //     yoyo: false,
-    //     onComplete: () => {
-    //       console.log(this.armor.frame.name.texture)
-    //       this.armor.setTexture('items', 'bow.png')
-    //     }
-    //   })
-    // })
-    // this.add.sprite(200, 300, 'items', 'axe.png')
+    this.drawCards()
   }
 }

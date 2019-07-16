@@ -14,6 +14,7 @@ export class PlayScene extends Phaser.Scene {
     this.remainingCards = 0
     this.flippedCardCount = 0
     this.triesCount = 0
+    this.remainingCards = this.cards.length / 2
   }
 
   drawUI() {
@@ -81,12 +82,13 @@ export class PlayScene extends Phaser.Scene {
     const selCardName = card.data.get('name')
 
     if (curCardName === selCardName) {
-      this.time.delayedCall(1000, () => {
+      this.time.delayedCall(800, () => {
         this.currentCard.setVisible(false)
         card.setVisible(false)
         this.currentCard = null
         this.remainingCards--
         this.flippedCardCount = 0
+        this.sound.play(config.audio.flipSuccess)
         this.finishGame()
       })
       this.points += 50
@@ -94,8 +96,9 @@ export class PlayScene extends Phaser.Scene {
     }
 
     this.currentCard = null
-    this.time.delayedCall(1000, () => {
+    this.time.delayedCall(800, () => {
       this.triesCount++
+      this.sound.play(config.audio.flipFail)
       this.flipAll()
     })
   }
@@ -173,6 +176,7 @@ export class PlayScene extends Phaser.Scene {
   flipCard(card) {
     const flipped = card.data.get('flipped')
     if (flipped) {
+      this.sound.play(config.audio.flip)
       this.unflip(card)
       return
     }
@@ -224,13 +228,16 @@ export class PlayScene extends Phaser.Scene {
     this.cards.map(card => {
       card.setVisible(true)
     })
-    this.drawCards()
+    this.time.delayedCall(500, () => {
+      this.drawCards()
+    })
   }
 
   finishGame() {
     if (this.remainingCards !== 0) {
       return
     }
+    this.sound.play(config.audio.levelCompleted)
     this.resetGame()
   }
 

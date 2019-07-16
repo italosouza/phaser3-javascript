@@ -18,7 +18,7 @@ export class MenuScene extends Phaser.Scene {
       .setDepth(0)
       .setScale(0.4)
 
-    this.sound.play(config.audio.bgm, { loop: true })
+    // this.sound.play(config.audio.bgm, { loop: true, volume: 0.7 })
     // this.sound.pauseOnBlur = false
 
     let hoverSprite = this.add.sprite(100, 100, config.sprites.fire1.key)
@@ -48,6 +48,7 @@ export class MenuScene extends Phaser.Scene {
     })
 
     playButton.on('pointerup', () => {
+      this.sound.play(config.audio.menuSelect)
       this.scene.start(config.scenes.play)
     })
   }

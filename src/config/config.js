@@ -4,7 +4,7 @@ export const config = {
     menu: 'menu',
     play: 'play'
   },
-  audios: {
+  audio: {
     bgm: 'soundtrack_1.mp3'
   },
   sprites: {

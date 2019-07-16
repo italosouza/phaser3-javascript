@@ -14,9 +14,9 @@ export class LoadScene extends Phaser.Scene {
   }
 
   loadAudio() {
-    this.load.setPath('assets/audios')
-    for (let audio in config.audios) {
-      this.load.audio(config.audios[audio], config.audios[audio])
+    this.load.setPath('assets/audio')
+    for (let audio in config.audio) {
+      this.load.audio(config.audio[audio], config.audio[audio])
     }
   }
 

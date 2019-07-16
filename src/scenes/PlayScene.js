@@ -5,52 +5,66 @@ export class PlayScene extends Phaser.Scene {
     super({ key: config.scenes.play })
     this.ui = {}
     this.cards = []
+    this.initialize()
+  }
+
+  initialize() {
     this.points = 0
     this.currentCard = null
+    this.remainingCards = 0
+    this.flippedCardCount = 0
+    this.triesCount = 0
   }
 
   drawUI() {
+    this.add
+      .image(0, 0, config.images.bg)
+      .setOrigin(0)
+      .setAlpha(0.6)
+      .setDepth(0)
+      .setScale(0.4)
+
     this.ui.score = this.add.text(25, 25, `Pontos: ${this.points}`, {
-      font: '16px Courier',
-      fill: '#00ff00'
+      style: {
+        font: '20px monospace',
+        fill: '#ffffff'
+      }
     })
+  }
+
+  setCardData(card, frame) {
+    const frameKey = `${frame.key}-${this.cards.length}`
+
+    card.setDataEnabled()
+    card.data.set('name', frame.frame)
+    card.data.set('selected', 0)
+    card.data.set('key', frameKey)
+    card.data.set('flipped', 1)
+    card.setTexture('items', 'map.png')
   }
 
   generateCardDeck() {
     const frameNames = this.anims.generateFrameNames('items', {
-      frames: [
-        'armor',
-        'axe',
-        'axeDouble',
-        'backpack',
-        'bow',
-        'coin'
-        // 'dagger',
-        // 'envelope',
-        // 'gemBlue',
-        // 'gemGreen',
-        // 'gemRed',
-        // 'hammer'
-      ],
+      frames: ['armor', 'axe', 'axeDouble', 'backpack', 'bow', 'coin', 'dagger', 'envelope'],
       suffix: '.png'
     })
 
     this.cardGroup = this.add.group({})
 
-    frameNames.map((frame, i) => {
-      const frameKey = `${frame.key}-${i}`
-      const card = this.add.sprite(-50, -50, frame.key, frame.frame)
-
-      card.setDataEnabled()
-      card.data.set('name', frame.frame)
-      card.data.set('selected', 0)
-      card.data.set('key', frameKey)
-      card.data.set('flipped', 1)
-      card.setTexture('items', 'map.png')
+    frameNames.map(frame => {
+      const card = this.make.sprite(frame.key, frame.frame)
+      this.setCardData(card, frame)
       this.cardGroup.add(card)
-
       this.cards.push(card)
     })
+
+    frameNames.map(frame => {
+      const card = this.make.sprite(frame.key, frame.frame)
+      this.setCardData(card, frame)
+      this.cardGroup.add(card)
+      this.cards.push(card)
+    })
+    this.remainingCards = this.cards.length / 2
   }
 
   selectCard(card) {
@@ -67,11 +81,33 @@ export class PlayScene extends Phaser.Scene {
     const selCardName = card.data.get('name')
 
     if (curCardName === selCardName) {
-      this.currentCard.setVisible(false)
-      card.setVisible(false)
-      this.currentCard = null
+      this.time.delayedCall(1000, () => {
+        this.currentCard.setVisible(false)
+        card.setVisible(false)
+        this.currentCard = null
+        this.remainingCards--
+        this.flippedCardCount = 0
+        this.finishGame()
+      })
       this.points += 50
+      return
     }
+
+    this.currentCard = null
+    this.time.delayedCall(1000, () => {
+      this.triesCount++
+      this.flipAll()
+    })
+  }
+
+  flipAll() {
+    this.cards.map(card => {
+      const unflipped = !card.data.get('flipped')
+      if (unflipped) {
+        this.flip(card)
+      }
+    })
+    this.flippedCardCount = 0
   }
 
   flip(card) {
@@ -113,10 +149,11 @@ export class PlayScene extends Phaser.Scene {
       repeat: 0,
       yoyo: false,
       onComplete: () => {
-        this.selectCard(card)
         const name = card.data.get('name')
         card.data.set('flipped', 0)
+        this.selectCard(card)
         card.setTexture('items', name)
+        this.flippedCardCount++
       }
     })
 
@@ -139,7 +176,7 @@ export class PlayScene extends Phaser.Scene {
       this.unflip(card)
       return
     }
-    this.flip(card)
+    // this.flip(card)
   }
 
   attachCardEvents() {
@@ -147,13 +184,12 @@ export class PlayScene extends Phaser.Scene {
       card.setInteractive()
 
       card.on('pointerup', () => {
+        if (this.flippedCardCount >= 2) {
+          return
+        }
         const selected = card.data.get('selected')
         card.data.set('selected', !selected)
         this.flipCard(card)
-      })
-
-      card.on('changedata', (gameObject, key, value) => {
-        this.ui.score.setText([`Pontos: ${this.points}`])
       })
     })
   }
@@ -179,5 +215,28 @@ export class PlayScene extends Phaser.Scene {
     this.attachCardEvents()
     this.shuffleCards()
     this.drawCards()
+  }
+
+  resetGame() {
+    this.initialize()
+    this.shuffleCards()
+    this.flipAll()
+    this.cards.map(card => {
+      card.setVisible(true)
+    })
+    this.drawCards()
+  }
+
+  finishGame() {
+    if (this.remainingCards !== 0) {
+      return
+    }
+    this.resetGame()
+  }
+
+  update() {
+    this.ui.score.setText([
+      `Pontos: ${this.points}\nFalta: ${this.remainingCards}\nTentativas: ${this.triesCount}`
+    ])
   }
 }
